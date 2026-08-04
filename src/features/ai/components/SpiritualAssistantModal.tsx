@@ -50,7 +50,7 @@ export const SpiritualAssistantModal: React.FC = () => {
         onClick={() => setIsOpen(!isOpen)}
         className="fixed bottom-6 right-6 z-50 p-4 rounded-full bg-[var(--color-primary)] text-white shadow-2xl hover:scale-110 transition-all flex items-center justify-center space-x-2"
       >
-        <span className="text-2xl">✨</span>
+        <i className="fa-solid fa-wand-magic-sparkles text-xl"></i>
         <span className="text-xs font-bold hidden sm:inline">
           {language === 'te' ? 'AI సహాయకుడు' : 'AI Assistant'}
         </span>
@@ -58,11 +58,11 @@ export const SpiritualAssistantModal: React.FC = () => {
 
       {/* Modal / Drawer */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 z-50 w-96 max-w-[calc(100vw-3rem)] bg-[var(--bg-card)] border border-[var(--color-border)] rounded-2xl shadow-2xl overflow-hidden flex flex-col h-[480px]">
+        <div className="fixed bottom-20 right-3 left-3 sm:left-auto sm:right-6 z-50 w-auto sm:w-96 bg-[var(--bg-card)] border border-[var(--color-border)] rounded-2xl shadow-2xl overflow-hidden flex flex-col h-[460px] sm:h-[480px]">
           <div className="p-4 bg-[var(--color-primary)] text-white font-serif font-bold flex items-center justify-between">
-            <span>✨ Devalaya AI Assistant</span>
-            <button onClick={() => setIsOpen(false)} className="text-sm">
-              ✕
+            <span className="flex items-center gap-2"><i className="fa-solid fa-wand-magic-sparkles"></i> Devalaya AI Assistant</span>
+            <button onClick={() => setIsOpen(false)} className="text-sm hover:opacity-80">
+              <i className="fa-solid fa-xmark"></i>
             </button>
           </div>
 

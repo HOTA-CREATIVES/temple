@@ -78,11 +78,13 @@ export default function Home() {
         >
           <div className="mx-auto max-w-4xl space-y-5 relative z-10">
             <span className="inline-block px-3.5 py-1 rounded-full text-xs font-serif font-semibold border border-[var(--color-accent-gold)] text-[var(--color-accent-gold)] bg-black/40 backdrop-blur-md">
-              {lang === 'te' ? '🛕 శ్రీ దేవాలయం దివ్య క్షేత్రం' : '🛕 Sri Devalaya Sacred Shrine'}
+              {lang === 'te' ? <><i className="fa-solid fa-gopuram mr-1.5"></i>దివ్య క్షేత్రం</> : <><i className="fa-solid fa-gopuram mr-1.5"></i>Sacred Shrine</>}
             </span>
 
-            <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white drop-shadow-md leading-tight">
-              {lang === 'te' ? 'శ్రీ లక్ష్మీ నరసింహ స్వామి దేవస్థానం' : 'Sri Lakshmi Narasimha Swamy Devasthanam'}
+            <h1 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white drop-shadow-md leading-tight max-w-4xl mx-auto">
+              {lang === 'te' 
+                ? 'శ్రీ శ్రీదేవి భూదేవి సమేత శ్రీ వేంకటేశ్వర స్వామి మరియు శ్రీ అభయ ఆంజనేయ స్వామి దేవస్థానం' 
+                : 'SRI SRIDEVI BHUDEVI SAMETHI SRI VENKATESHWARA SWAMY & SRI ABAYA ANJANEY SWAMY TEMPLE'}
             </h1>
 
             <p className="text-sm sm:text-base text-amber-100/90 max-w-2xl mx-auto leading-relaxed">

@@ -6,13 +6,13 @@ export const Footer: React.FC = () => {
     <footer className="w-full border-t border-[var(--border-subtle)] bg-[var(--bg-surface)] text-[var(--text-primary)] transition-colors duration-300">
       {/* Decorative Gopuram Top Divider */}
       <div className="flex justify-center -mt-3.5">
-        <span className="bg-[var(--bg-surface)] px-4 text-xs font-serif text-[var(--color-accent-gold)] border border-[var(--border-gold)] rounded-full shadow-sm">
-          🛕 Sri Devasthanam 🛕
+        <span className="bg-[var(--bg-surface)] px-4 text-xs font-serif text-[var(--color-accent-gold)] border border-[var(--border-gold)] rounded-full shadow-sm flex items-center gap-2">
+          <i className="fa-solid fa-gopuram"></i> Sri Devasthanam <i className="fa-solid fa-gopuram"></i>
         </span>
       </div>
 
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand & Mission */}
           <div className="space-y-3 md:col-span-1">
             <h3 className="font-serif text-xl font-bold text-[var(--color-secondary)]">Devalaya</h3>

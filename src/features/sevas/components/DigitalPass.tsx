@@ -19,8 +19,10 @@ export const DigitalPass: React.FC<DigitalPassProps> = ({ booking, language }) =
         {isTe ? 'అధికారిక సేవా పాస్' : 'Official Seva Pass'}
       </div>
 
-      <h3 className="text-2xl font-bold font-serif text-[var(--color-primary)]">
-        {isTe ? 'శ్రీ దేవాలయం' : 'Sri Devalaya Temple'}
+      <h3 className="text-lg font-bold font-serif text-[var(--color-primary)] leading-snug">
+        {isTe 
+          ? 'శ్రీ శ్రీదేవి భూదేవి సమేత శ్రీ వేంకటేశ్వర స్వామి మరియు శ్రీ అభయ ఆంజనేయ స్వామి ఆలయం' 
+          : 'SRI SRIDEVI BHUDEVI SAMETHI SRI VENKATESHWARA SWAMY & SRI ABAYA ANJANEY SWAMY TEMPLE'}
       </h3>
 
       <div className="py-3 border-y border-[var(--color-border)] space-y-2 text-left text-sm">
