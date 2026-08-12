@@ -1,49 +1,68 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 interface HeroCarouselProps {
   currentLanguage?: 'en' | 'te';
 }
 
+const BG_VIDEO_URL =
+  'https://res.cloudinary.com/diiyy6bar/video/upload/v1786551181/Sri_Venkatesha_Stotram_-_Invoking_the_Lord_s_Mercy_-_ISKCON_Bangalore_Music_1080p_h264_youtube_lpz53p.mp4';
+
 export const HeroCarousel: React.FC<HeroCarouselProps> = ({ currentLanguage = 'en' }) => {
   const isTe = currentLanguage === 'te';
-  const videoId = '_yhBlE3D9cc';
-  const [origin, setOrigin] = useState('');
+  const [isMuted, setIsMuted] = React.useState(false);
+  const videoRef = React.useRef<HTMLVideoElement>(null);
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setOrigin(window.location.origin);
+  const toggleMute = () => {
+    if (videoRef.current) {
+      const nextMuted = !isMuted;
+      videoRef.current.muted = nextMuted;
+      setIsMuted(nextMuted);
+      if (!nextMuted) {
+        videoRef.current.play().catch(() => {
+          // Autoplay fallback handling if browser restricts unmuted playback without interaction
+        });
+      }
     }
-  }, []);
-
-  const videoSrc = origin
-    ? `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=0&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&enablejsapi=1&origin=${encodeURIComponent(
-        origin
-      )}`
-    : `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=0&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&enablejsapi=1`;
+  };
 
   return (
     <section className="relative w-full overflow-hidden bg-black text-white" aria-label="Temple Devotional Hero">
-      {/* 16:9 Aspect Ratio Video Container */}
-      <div className="relative w-full aspect-video max-h-[650px] overflow-hidden pointer-events-none">
-        <iframe
-          src={videoSrc}
-          title="Devotional Temple Video"
+      {/* Background Video Container */}
+      <div className="relative w-full aspect-video max-h-[650px] overflow-hidden">
+        <video
+          ref={videoRef}
+          src={BG_VIDEO_URL}
+          autoPlay
+          loop
+          playsInline
           className="absolute inset-0 w-full h-full object-cover"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         />
-        {/* Solid Dark Semi-transparent Overlay */}
-        <div className="absolute inset-0 bg-black/40" />
+        {/* Dark Gradient Overlay for optimal title readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 pointer-events-none" />
       </div>
 
-      {/* Hero Foreground Content Overlay - Leftmost Bottom Positioned */}
+      {/* Audio Control Toggle Button (Top Right) */}
+      <div className="absolute top-4 right-4 z-30">
+        <button
+          onClick={toggleMute}
+          className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 hover:bg-black/80 text-amber-300 text-xs font-semibold backdrop-blur-sm border border-amber-500/30 transition-all shadow-lg cursor-pointer"
+          title={isMuted ? 'Unmute Audio' : 'Mute Audio'}
+          aria-label={isMuted ? 'Unmute Devotional Audio' : 'Mute Devotional Audio'}
+        >
+          <i className={`fa-solid ${isMuted ? 'fa-volume-xmark text-red-400' : 'fa-volume-high text-emerald-400'}`}></i>
+          <span>{isMuted ? (isTe ? 'శబ్దం ఆన్ చేయండి' : 'Play Stotram Audio') : (isTe ? 'శబ్దం నిశ్శబ్దం' : 'Mute Audio')}</span>
+        </button>
+      </div>
+
+      {/* Hero Foreground Content Overlay */}
       <div className="absolute inset-0 z-20 w-full px-4 sm:px-6 lg:px-8 flex items-end pb-6 sm:pb-10 pointer-events-none">
         <div className="flex items-stretch gap-3.5 max-w-3xl">
           {/* Solid Saffron Vertical Accent Line */}
           <div className="w-1.5 rounded-full bg-[var(--color-primary)] shrink-0 shadow-sm" />
 
-          {/* Leftmost Title Block */}
+          {/* Title Block */}
           <div className="text-left space-y-1">
             <span className="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-amber-300 font-bold">
               {isTe ? 'శ్రీదేవి భూదేవి సమేత పవిత్ర క్షేత్రం' : 'Sacred Devotional Shrine'}
