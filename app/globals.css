@@ -1,14 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+Telugu:wght@400;500;600;700&family=Ramabhadra&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Product+Sans:wght@400;500;700&family=Open+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+Telugu:wght@400;500;600;700&family=Ramabhadra&display=swap');
 @import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
 
 :root {
   /* Theme: Prabha (Radiance / Day Mode - Default) */
   --bg-base: #FFFBF3;           /* Warm ivory background */
   --bg-surface: #FFFFFF;        /* Pure white for primary cards */
-  --bg-elevated: #FFF4E0;       /* Soft turmeric/cream tint for secondary cards */
+  --bg-elevated: #FFF7EB;       /* Soft turmeric/cream tint for secondary cards */
   
-  --color-primary: #E8630A;     /* Kesari / Deep Saffron — primary CTAs, active states */
-  --color-primary-hover: #C94F05;
+  --color-primary: #D95305;     /* Kesari / Deep Saffron — primary CTAs, active states */
+  --color-primary-hover: #B84200;
   --color-secondary: #7B1E1E;   /* Temple Maroon — section headers, major anchors */
   --color-secondary-hover: #5E1616;
   
@@ -22,12 +26,13 @@
   --border-subtle: #EFE1CC;     /* Warm subtle border */
   --border-gold: #D9B36C;       /* Accent border */
   
-  --shadow-sm: 0 2px 4px rgba(42, 27, 18, 0.04);
-  --shadow-md: 0 4px 12px rgba(42, 27, 18, 0.08);
-  --shadow-lg: 0 8px 24px rgba(42, 27, 18, 0.12);
+  --shadow-sm: 0 2px 6px rgba(42, 27, 18, 0.04);
+  --shadow-md: 0 6px 16px rgba(42, 27, 18, 0.07);
+  --shadow-lg: 0 12px 28px rgba(42, 27, 18, 0.1);
+  --shadow-temple-glow: 0 8px 30px rgba(200, 150, 44, 0.15);
   
   --font-serif: 'Cormorant Garamond', 'Ramabhadra', serif;
-  --font-sans: 'Inter', 'Noto Sans Telugu', sans-serif;
+  --font-sans: 'Google Sans', 'Product Sans', 'Open Sans', 'Noto Sans Telugu', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 }
 
@@ -52,9 +57,10 @@
   --border-subtle: #3A2620;
   --border-gold: #8C6A2E;
   
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.35);
-  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.5);
+  --shadow-temple-glow: 0 8px 30px rgba(217, 169, 79, 0.2);
 }
 
 body {
@@ -62,6 +68,7 @@ body {
   color: var(--text-primary);
   font-family: var(--font-sans);
   transition: background-color 0.3s ease, color 0.3s ease;
+  line-height: 1.6;
 }
 
 h1, h2, h3, h4, .font-serif {
@@ -70,4 +77,33 @@ h1, h2, h3, h4, .font-serif {
 
 .font-mono {
   font-family: var(--font-mono);
+}
+
+/* Input Fields: Rectangular with subtle corner rounding */
+input:not([type="checkbox"]):not([type="radio"]),
+select,
+textarea {
+  border-radius: 6px !important;
+}
+
+/* Action Buttons & Badges: Pill/Full rounded */
+button,
+.btn-pill,
+.badge-pill {
+  border-radius: 9999px;
+}
+
+/* Custom Solid Temple Decorator Utility Classes */
+.temple-gold-divider {
+  height: 1px;
+  background-color: var(--border-subtle);
+}
+
+.temple-card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.temple-card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }

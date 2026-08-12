@@ -39,9 +39,9 @@ export const SevaCard: React.FC<SevaCardProps> = ({ seva, language, onSelect }) 
         </span>
         <button
           onClick={() => onSelect(seva)}
-          className="px-4 py-2 text-sm font-semibold rounded-lg bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-dark)] transition-colors"
+          className="px-4 py-2 text-sm font-semibold rounded-lg bg-[var(--bg-surface)] text-[var(--color-primary)] border border-[var(--border-gold)] hover:bg-[var(--bg-elevated)] transition-colors"
         >
-          {isTe ? 'సేవ బుక్ చేయండి' : 'Book Seva'}
+          {isTe ? 'సేవా వివరాలు' : 'Seva Timings'}
         </button>
       </div>
     </div>

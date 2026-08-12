@@ -3,9 +3,12 @@
 import React, { useState } from 'react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
-import { AnnouncementBanner } from '@/components/ui/AnnouncementBanner';
+import { HeroCarousel } from '@/components/ui/HeroCarousel';
 import { PanchangamCard } from '@/features/panchangam/components/PanchangamCard';
 import { EventCard, EventItem } from '@/features/events/components/EventCard';
+import { VedicQuoteCard } from '@/components/ui/VedicQuoteCard';
+import { CoreServicesGrid } from '@/components/ui/CoreServicesGrid';
+import { GalleryHighlights } from '@/components/ui/GalleryHighlights';
 import Link from 'next/link';
 
 const sampleEvents: EventItem[] = [
@@ -38,7 +41,6 @@ const sampleEvents: EventItem[] = [
 export default function Home() {
   const [lang, setLang] = useState<'en' | 'te'>('en');
   const [theme, setTheme] = useState<'prabha' | 'sandhya'>('prabha');
-  const [showBanner, setShowBanner] = useState(true);
 
   const toggleLanguage = () => setLang((prev) => (prev === 'en' ? 'te' : 'en'));
   const toggleTheme = () => {
@@ -47,18 +49,10 @@ export default function Home() {
     document.documentElement.setAttribute('data-theme', nextTheme);
   };
 
+  const isTe = lang === 'te';
+
   return (
     <div className="min-h-screen flex flex-col bg-[var(--bg-base)] text-[var(--text-primary)] transition-colors duration-300">
-      {/* Announcement Strip */}
-      {showBanner && (
-        <AnnouncementBanner
-          message={lang === 'te' ? 'ప్రత్యేక దర్శన సమయాలు మరియు పూజా వివరాలు ఆన్‌లైన్‌లో అందుబాటులో ఉన్నాయి' : 'Special Darshan Timings & Seva Booking Details Available Online'}
-          linkText={lang === 'te' ? 'వివరాలు' : 'View'}
-          linkHref="/events"
-          onDismiss={() => setShowBanner(false)}
-        />
-      )}
-
       {/* Primary Navigation Header */}
       <Header
         currentLanguage={lang}
@@ -68,51 +62,34 @@ export default function Home() {
       />
 
       {/* Main Content Area */}
-      <main className="flex-1 space-y-12 pb-16">
-        {/* Hero Section with Temple Image Background */}
-        <section 
-          className="relative overflow-hidden bg-cover bg-center border-b border-[var(--border-subtle)] py-20 sm:py-28 px-4 text-center"
-          style={{
-            backgroundImage: `linear-gradient(to bottom, rgba(26, 15, 12, 0.75), rgba(26, 15, 12, 0.88)), url('https://temple.yatradham.org/public/Product/temple/temple_Fk1IOXiZ_202408041546580.jpg')`,
-          }}
-        >
-          <div className="mx-auto max-w-4xl space-y-5 relative z-10">
-            <span className="inline-block px-3.5 py-1 rounded-full text-xs font-serif font-semibold border border-[var(--color-accent-gold)] text-[var(--color-accent-gold)] bg-black/40 backdrop-blur-md">
-              {lang === 'te' ? <><i className="fa-solid fa-gopuram mr-1.5"></i>దివ్య క్షేత్రం</> : <><i className="fa-solid fa-gopuram mr-1.5"></i>Sacred Shrine</>}
-            </span>
+      <main className="flex-1 space-y-10 sm:space-y-14 pb-16">
+        {/* Dynamic Temple Hero Video Section */}
+        <HeroCarousel currentLanguage={lang} />
 
-            <h1 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white drop-shadow-md leading-tight max-w-4xl mx-auto">
-              {lang === 'te' 
-                ? 'శ్రీ శ్రీదేవి భూదేవి సమేత శ్రీ వేంకటేశ్వర స్వామి మరియు శ్రీ అభయ ఆంజనేయ స్వామి దేవస్థానం' 
-                : 'SRI SRIDEVI BHUDEVI SAMETHI SRI VENKATESHWARA SWAMY & SRI ABAYA ANJANEY SWAMY TEMPLE'}
-            </h1>
+        <div className="temple-gold-divider mx-auto max-w-7xl" />
 
-            <p className="text-sm sm:text-base text-amber-100/90 max-w-2xl mx-auto leading-relaxed">
-              {lang === 'te' 
-                ? 'భక్తుల సౌకర్యార్థం దినచర్య సమయాలు, రాబోయే ఉత్సవాలు మరియు రోజూ పంచాంగ వివరాలను వీక్షించండి.' 
-                : 'Experience peace, devotional harmony, daily Panchangam details, and festival archives at your fingertips.'}
-            </p>
-
-            <div className="pt-4 flex flex-wrap justify-center gap-4">
-              <Link
-                href="/calendar"
-                className="px-5 py-2.5 rounded-lg text-sm font-semibold bg-[var(--color-primary)] text-white shadow-lg hover:bg-[var(--color-primary-hover)] transition-transform hover:scale-105"
-              >
-                {lang === 'te' ? 'నేటి పంచాంగం వీక్షించండి' : "View Today's Panchangam"}
-              </Link>
-              <Link
-                href="/events"
-                className="px-5 py-2.5 rounded-lg text-sm font-semibold border border-[var(--color-accent-gold)] text-white bg-black/40 backdrop-blur-md hover:bg-black/60 transition-transform hover:scale-105"
-              >
-                {lang === 'te' ? 'రాబోయే ఉత్సవాలు' : 'Upcoming Festivals'}
-              </Link>
-            </div>
-          </div>
+        {/* Core Sacred Services */}
+        <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <CoreServicesGrid currentLanguage={lang} />
         </section>
+
+        {/* Daily Vedic Quote Wisdom */}
+        <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <VedicQuoteCard currentLanguage={lang} />
+        </section>
+
+        <div className="temple-gold-divider mx-auto max-w-7xl" />
 
         {/* Live Panchangam Widget */}
         <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <PanchangamCard />
+          <PanchangamCard currentLanguage={lang} />
+        </section>
+
+        <div className="temple-gold-divider mx-auto max-w-7xl" />
+
+        {/* Gallery Highlights */}
+        <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <GalleryHighlights currentLanguage={lang} />
         </section>
 
         {/* Upcoming Events Grid */}
@@ -120,20 +97,21 @@ export default function Home() {
           <div className="flex items-center justify-between border-b border-[var(--border-subtle)] pb-3">
             <div>
               <h2 className="font-serif text-2xl font-bold text-[var(--color-secondary)]">
-                {lang === 'te' ? 'రాబోయే కార్యక్రమాలు' : 'Upcoming Events & Sevas'}
+                {isTe ? 'రాబోయే కార్యక్రమాలు' : 'Upcoming Festivals & Events'}
               </h2>
               <p className="text-xs text-[var(--text-secondary)]">
-                {lang === 'te' ? 'ఆలయంలో జరగబోయే ముఖ్యమైన పూజలు' : 'Join us in sacred celebrations and temple processions'}
+                {isTe ? 'ఆలయంలో జరగబోయే ముఖ్యమైన పూజలు' : 'Join us in sacred celebrations and temple processions'}
               </p>
             </div>
-            <Link href="/events" className="text-xs font-semibold text-[var(--color-primary)] hover:underline">
-              {lang === 'te' ? 'అన్నీ చూడండి →' : 'View All →'}
+            <Link href="/events" className="text-xs font-semibold text-[var(--color-primary)] hover:underline flex items-center gap-1">
+              <span>{isTe ? 'అన్నీ చూడండి' : 'View All'}</span>
+              <i className="fa-solid fa-arrow-right text-[10px]"></i>
             </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {sampleEvents.map((event) => (
-              <EventCard key={event.id} event={event} />
+              <EventCard key={event.id} event={event} currentLanguage={lang} />
             ))}
           </div>
         </section>
