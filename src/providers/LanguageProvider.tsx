@@ -1,8 +1,9 @@
 'use client';
 
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext } from 'react';
+import { useLanguageTheme } from './LanguageThemeContext';
 
-export type Language = 'en' | 'te' | 'kn' | 'ta';
+export type Language = 'en' | 'te';
 
 interface LanguageContextType {
   language: Language;
@@ -13,34 +14,20 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [language, setLanguage] = useState<Language>('en');
-
-  const toggleLanguage = () => {
-    const cycle: Record<Language, Language> = {
-      en: 'te',
-      te: 'kn',
-      kn: 'ta',
-      ta: 'en',
-    };
-    setLanguage((prev) => cycle[prev]);
-  };
+  const { currentLanguage, setLanguage, toggleLanguage } = useLanguageTheme();
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, toggleLanguage }}>
+    <LanguageContext.Provider value={{ language: currentLanguage, setLanguage, toggleLanguage }}>
       {children}
     </LanguageContext.Provider>
   );
 };
 
 export const useLanguage = () => {
-  const context = useContext(LanguageContext);
-  if (!context) {
-    // Return default fallback if used outside provider
-    return {
-      language: 'en' as Language,
-      setLanguage: () => {},
-      toggleLanguage: () => {},
-    };
-  }
-  return context;
+  const { currentLanguage, setLanguage, toggleLanguage } = useLanguageTheme();
+  return {
+    language: currentLanguage,
+    setLanguage,
+    toggleLanguage,
+  };
 };

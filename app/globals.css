@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Product+Sans:wght@400;500;700&family=Open+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+Telugu:wght@400;500;600;700&family=Ramabhadra&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Poppins:wght@400;500;600;700&family=Hind:wght@400;500;600;700&family=Noto+Sans+Telugu:wght@400;500;600;700&family=Ramabhadra&family=Anek+Telugu:wght@600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
 @import "tailwindcss";
 
 html {
@@ -6,61 +6,63 @@ html {
 }
 
 :root {
-  /* Theme: Prabha (Radiance / Day Mode - Default) */
-  --bg-base: #FFFBF3;           /* Warm ivory background */
-  --bg-surface: #FFFFFF;        /* Pure white for primary cards */
-  --bg-elevated: #FFF7EB;       /* Soft turmeric/cream tint for secondary cards */
+  /* Theme: Prabha (Radiant Day Mode - Devotional Kesari & Temple Maroon) */
+  --bg-base: #FFFDF8;           /* Sacred warm ivory background */
+  --bg-surface: #FFFFFF;        /* Pure white primary surface */
+  --bg-elevated: #FFF8EB;       /* Soft turmeric/sandalwood cream tint */
+  --bg-card: #FFFFFF;
   
-  --color-primary: #D95305;     /* Kesari / Deep Saffron — primary CTAs, active states */
-  --color-primary-hover: #B84200;
-  --color-secondary: #7B1E1E;   /* Temple Maroon — section headers, major anchors */
-  --color-secondary-hover: #5E1616;
+  --color-primary: #E65100;     /* Deep Kesari Kumkum Saffron */
+  --color-primary-hover: #BF360C;
+  --color-secondary: #6A1B1B;   /* Ancient Temple Maroon / Red Ochre */
+  --color-secondary-hover: #4A1010;
   
-  --color-accent-gold: #C8962C; /* Muted Temple Gold — borders, dividers, subtle iconography */
-  --color-accent-emerald: #1F6F5C; /* Emerald Green — strictly for Calendar festival tags */
+  --color-accent-gold: #D4AF37; /* Sacred Pure Temple Swarna Gold */
+  --color-accent-emerald: #1B5E20; /* Pavitra Tulasi Leaf Emerald */
   
-  --text-primary: #2A1B12;      /* Warm charcoal-brown, never pure black */
-  --text-secondary: #6B5B4E;    /* Muted warm brown for secondary copy */
-  --text-muted: #9E8E82;
+  --text-primary: #2C1B16;      /* Deep sandalwood charcoal */
+  --text-secondary: #634E45;    /* Warm muted earth brown */
+  --text-muted: #9C887E;
   
-  --border-subtle: #EFE1CC;     /* Warm subtle border */
-  --border-gold: #D9B36C;       /* Accent border */
+  --border-subtle: #F3E5D0;     /* Subtle golden ivory border */
+  --border-gold: #E5C378;       /* Glowing gold accent border */
   
-  --shadow-sm: 0 2px 6px rgba(42, 27, 18, 0.04);
-  --shadow-md: 0 6px 16px rgba(42, 27, 18, 0.07);
-  --shadow-lg: 0 12px 28px rgba(42, 27, 18, 0.1);
-  --shadow-temple-glow: 0 8px 30px rgba(200, 150, 44, 0.15);
+  --shadow-sm: 0 2px 8px rgba(44, 27, 22, 0.05);
+  --shadow-md: 0 8px 20px rgba(44, 27, 22, 0.08);
+  --shadow-lg: 0 16px 36px rgba(44, 27, 22, 0.12);
+  --shadow-temple-glow: 0 8px 30px rgba(212, 175, 55, 0.2);
   
-  --font-serif: 'Cormorant Garamond', 'Ramabhadra', serif;
-  --font-sans: 'Google Sans', 'Product Sans', 'Open Sans', 'Noto Sans Telugu', sans-serif;
+  --font-serif: 'Cinzel', 'Playfair Display', 'Ramabhadra', serif;
+  --font-sans: 'Poppins', 'Hind', 'Noto Sans Telugu', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 }
 
 [data-theme="sandhya"] {
-  /* Theme: Sandhya (Dusk / Night Mode) */
-  --bg-base: #1A0F0C;           /* Deep obsidian-maroon background */
-  --bg-surface: #241512;        /* Dark surface card background */
-  --bg-elevated: #2E1B16;       /* Elevated dark card */
+  /* Theme: Sandhya (Dusk Night Mode - Deep Sanctum Obsidian & Glowing Gold) */
+  --bg-base: #140B08;           /* Deep sanctum obsidian background */
+  --bg-surface: #1E120E;        /* Elevated dark sandstone card */
+  --bg-elevated: #281914;       /* Turmeric-tinted dark card */
+  --bg-card: #1E120E;
   
-  --color-primary: #F2A65A;     /* Soft warm saffron for dark background */
-  --color-primary-hover: #FFC080;
-  --color-secondary: #E8B4A0;   /* Muted rose-maroon for dark mode headers */
-  --color-secondary-hover: #F0C4B4;
+  --color-primary: #FB8C00;     /* Glowing lamp saffron flame */
+  --color-primary-hover: #FFA726;
+  --color-secondary: #F5C6AA;   /* Warm rose-gold maroon highlight */
+  --color-secondary-hover: #F8D7C4;
   
-  --color-accent-gold: #D9A94F; /* Warm glowing gold */
-  --color-accent-emerald: #4FA98A; /* Soft mint-emerald for festival tags */
+  --color-accent-gold: #E5C158; /* Glowing diya gold */
+  --color-accent-emerald: #43A047; /* Pavitra mint emerald */
   
-  --text-primary: #F6EDE4;      /* Soft warm cream text */
-  --text-secondary: #C9B8AC;    /* Muted warm grey-brown text */
-  --text-muted: #8C7B6F;
+  --text-primary: #FDF8F3;      /* Soft sacred cream text */
+  --text-secondary: #D4C3B7;    /* Muted warm beige copy */
+  --text-muted: #8E7B70;
   
-  --border-subtle: #3A2620;
-  --border-gold: #8C6A2E;
+  --border-subtle: #33201A;
+  --border-gold: #997A30;
   
-  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.2);
-  --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.35);
-  --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.5);
-  --shadow-temple-glow: 0 8px 30px rgba(217, 169, 79, 0.2);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 20px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 16px 36px rgba(0, 0, 0, 0.6);
+  --shadow-temple-glow: 0 8px 30px rgba(229, 193, 88, 0.25);
 }
 
 body {
@@ -79,18 +81,49 @@ h1, h2, h3, h4, .font-serif {
   font-family: var(--font-mono);
 }
 
-/* Input Fields: Rectangular with subtle corner rounding */
+/* Form Controls Standardizing */
 input:not([type="checkbox"]):not([type="radio"]),
 select,
 textarea {
-  border-radius: 6px !important;
+  border-radius: 0.75rem;
+  transition: all 0.2s ease;
 }
 
-/* Action Buttons & Badges: Pill/Full rounded */
-button,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Button & Badge Utility Classes */
 .btn-pill,
 .badge-pill {
   border-radius: 9999px;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.btn-secondary {
+  background-color: var(--bg-elevated);
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 0.75rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+.btn-secondary:hover {
+  border-color: var(--border-gold);
 }
 
 /* Custom Solid Temple Decorator Utility Classes */
@@ -104,6 +137,22 @@ button,
 }
 
 .temple-card-hover:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
   box-shadow: var(--shadow-md);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-gold);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-gold);
 }

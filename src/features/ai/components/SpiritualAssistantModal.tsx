@@ -1,23 +1,19 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useLanguage } from '@/providers/LanguageProvider';
+import { useLanguageTheme } from '@/providers/LanguageThemeContext';
 
 export const SpiritualAssistantModal: React.FC = () => {
-  const { language } = useLanguage();
+  const { currentLanguage } = useLanguageTheme();
+  const isTe = currentLanguage === 'te';
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [messages, setMessages] = useState<{ sender: 'user' | 'ai'; text: string }[]>([
     {
       sender: 'ai',
-      text:
-        language === 'te'
-          ? 'నమస్కారం! నేను ఆలయ దివ్య AI సహాయకుడిని. దర్శనం వేళలు, సేవా వివరాలు లేదా పంచాంగం గురించి నన్ను అడగండి.'
-          : language === 'kn'
-          ? 'నమస్కార! నాను దేవాలయ దివ్య AI సహాయక. దర్శన సమయగల బగ్గె కేళి.'
-          : language === 'ta'
-          ? 'வணக்கம்! நான் கோயில் AI సహాయకన్. தரிசன நேரங்களை கேளுங்கள்.'
-          : 'Namaste! I am the temple AI Assistant. Ask me about Darshan timings, Seva details, or daily Panchangam.',
+      text: isTe
+        ? 'నమస్కారం! నేను ఆలయ దివ్య AI సహాయకుడిని. దర్శనం వేళలు, సేవా వివరాలు లేదా పంచాంగం గురించి నన్ను అడగండి.'
+        : 'Namaste! I am the temple AI Assistant. Ask me about Darshan timings, Seva details, or daily Panchangam.',
     },
   ]);
 
@@ -34,10 +30,9 @@ export const SpiritualAssistantModal: React.FC = () => {
         ...prev,
         {
           sender: 'ai',
-          text:
-            language === 'te'
-              ? 'ప్రధాన ఆలయ దర్శనం ఉదయం 6:00 నుండి రాత్రి 8:30 వరకు తెరిచి ఉంటుంది. నిత్య అన్నదానం మధ్యాహ్నం 11:30 కి ప్రారంభమవుతుంది.'
-              : 'Main temple Darshan is open from 6:00 AM to 8:30 PM. Nitya Annadanam begins at 11:30 AM.',
+          text: isTe
+            ? 'ప్రధాన ఆలయ దర్శనం ఉదయం 6:00 నుండి రాత్రి 8:30 వరకు తెరిచి ఉంటుంది. నిత్య అన్నదానం మధ్యాహ్నం 11:30 కి ప్రారంభమవుతుంది.'
+            : 'Main temple Darshan is open from 6:00 AM to 8:30 PM. Nitya Annadanam begins at 11:30 AM.',
         },
       ]);
     }, 600);
@@ -48,20 +43,20 @@ export const SpiritualAssistantModal: React.FC = () => {
       {/* Floating Action Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-50 p-4 rounded-full bg-[var(--color-primary)] text-white shadow-2xl hover:scale-110 transition-all flex items-center justify-center space-x-2"
+        className="fixed bottom-6 right-6 z-50 p-4 rounded-full bg-[var(--color-primary)] text-white shadow-2xl hover:scale-110 transition-all flex items-center justify-center space-x-2 cursor-pointer"
       >
         <i className="fa-solid fa-wand-magic-sparkles text-xl"></i>
         <span className="text-xs font-bold hidden sm:inline">
-          {language === 'te' ? 'AI సహాయకుడు' : 'AI Assistant'}
+          {isTe ? 'AI సహాయకుడు' : 'AI Assistant'}
         </span>
       </button>
 
       {/* Modal / Drawer */}
       {isOpen && (
-        <div className="fixed bottom-20 right-3 left-3 sm:left-auto sm:right-6 z-50 w-auto sm:w-96 bg-[var(--bg-card)] border border-[var(--color-border)] rounded-2xl shadow-2xl overflow-hidden flex flex-col h-[460px] sm:h-[480px]">
-          <div className="p-4 bg-[var(--color-primary)] text-white font-serif font-bold flex items-center justify-between">
-            <span className="flex items-center gap-2"><i className="fa-solid fa-wand-magic-sparkles"></i> Devalaya AI Assistant</span>
-            <button onClick={() => setIsOpen(false)} className="text-sm hover:opacity-80">
+        <div className="fixed bottom-20 right-3 left-3 sm:left-auto sm:right-6 z-50 w-auto sm:w-96 bg-[var(--bg-surface)] border border-[var(--border-subtle)] rounded-2xl shadow-2xl overflow-hidden flex flex-col h-[460px] sm:h-[480px]">
+          <div className="p-4 bg-[var(--color-secondary)] text-white font-serif font-bold flex items-center justify-between">
+            <span className="flex items-center gap-2"><i className="fa-solid fa-wand-magic-sparkles text-[var(--color-accent-gold)]"></i> Devalaya AI Assistant</span>
+            <button onClick={() => setIsOpen(false)} className="text-sm hover:opacity-80 cursor-pointer">
               <i className="fa-solid fa-xmark"></i>
             </button>
           </div>
@@ -77,7 +72,7 @@ export const SpiritualAssistantModal: React.FC = () => {
                   className={`max-w-[80%] px-3.5 py-2.5 rounded-2xl text-xs leading-relaxed ${
                     m.sender === 'user'
                       ? 'bg-[var(--color-primary)] text-white rounded-br-none'
-                      : 'bg-[var(--bg-card)] border border-[var(--color-border)] text-[var(--color-text-main)] rounded-bl-none shadow-sm'
+                      : 'bg-[var(--bg-surface)] border border-[var(--border-subtle)] text-[var(--text-primary)] rounded-bl-none shadow-sm'
                   }`}
                 >
                   {m.text}
@@ -87,17 +82,17 @@ export const SpiritualAssistantModal: React.FC = () => {
           </div>
 
           {/* Input */}
-          <form onSubmit={handleSend} className="p-3 border-t border-[var(--color-border)] bg-[var(--bg-card)] flex items-center space-x-2">
+          <form onSubmit={handleSend} className="p-3 border-t border-[var(--border-subtle)] bg-[var(--bg-surface)] flex items-center space-x-2">
             <input
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder={language === 'te' ? 'మీ ప్రశ్నను టైప్ చేయండి...' : 'Ask a question...'}
-              className="flex-1 px-3 py-2 text-xs border border-[var(--color-border)] rounded-lg bg-[var(--bg-base)] text-[var(--color-text-main)]"
+              placeholder={isTe ? 'మీ ప్రశ్నను టైప్ చేయండి...' : 'Ask a question...'}
+              className="flex-1 px-3 py-2 text-xs border border-[var(--border-subtle)] rounded-xl bg-[var(--bg-elevated)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--color-primary)]"
             />
             <button
               type="submit"
-              className="px-3 py-2 text-xs font-bold rounded-lg bg-[var(--color-primary)] text-white"
+              className="px-4 py-2 text-xs font-bold rounded-xl bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-hover)] transition-colors cursor-pointer"
             >
               Send
             </button>

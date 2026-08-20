@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { HeroCarousel } from '@/components/ui/HeroCarousel';
@@ -9,6 +9,7 @@ import { EventCard, EventItem } from '@/features/events/components/EventCard';
 import { VedicQuoteCard } from '@/components/ui/VedicQuoteCard';
 import { CoreServicesGrid } from '@/components/ui/CoreServicesGrid';
 import { GalleryHighlights } from '@/components/ui/GalleryHighlights';
+import { useLanguageTheme } from '@/providers/LanguageThemeContext';
 import Link from 'next/link';
 
 const sampleEvents: EventItem[] = [
@@ -39,57 +40,42 @@ const sampleEvents: EventItem[] = [
 ];
 
 export default function Home() {
-  const [lang, setLang] = useState<'en' | 'te'>('en');
-  const [theme, setTheme] = useState<'prabha' | 'sandhya'>('prabha');
-
-  const toggleLanguage = () => setLang((prev) => (prev === 'en' ? 'te' : 'en'));
-  const toggleTheme = () => {
-    const nextTheme = theme === 'prabha' ? 'sandhya' : 'prabha';
-    setTheme(nextTheme);
-    document.documentElement.setAttribute('data-theme', nextTheme);
-  };
-
-  const isTe = lang === 'te';
+  const { currentLanguage } = useLanguageTheme();
+  const isTe = currentLanguage === 'te';
 
   return (
     <div className="min-h-screen flex flex-col bg-[var(--bg-base)] text-[var(--text-primary)] transition-colors duration-300">
-      {/* Primary Navigation Header */}
-      <Header
-        currentLanguage={lang}
-        currentTheme={theme}
-        onLanguageToggle={toggleLanguage}
-        onThemeToggle={toggleTheme}
-      />
+      <Header />
 
       {/* Main Content Area */}
       <main className="flex-1 space-y-10 sm:space-y-14 pb-16">
         {/* Dynamic Temple Hero Video Section */}
-        <HeroCarousel currentLanguage={lang} />
+        <HeroCarousel />
 
         <div className="temple-gold-divider mx-auto max-w-7xl" />
 
         {/* Core Sacred Services */}
         <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <CoreServicesGrid currentLanguage={lang} />
+          <CoreServicesGrid />
         </section>
 
         {/* Daily Vedic Quote Wisdom */}
         <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <VedicQuoteCard currentLanguage={lang} />
+          <VedicQuoteCard />
         </section>
 
         <div className="temple-gold-divider mx-auto max-w-7xl" />
 
         {/* Live Panchangam Widget */}
         <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <PanchangamCard currentLanguage={lang} />
+          <PanchangamCard />
         </section>
 
         <div className="temple-gold-divider mx-auto max-w-7xl" />
 
         {/* Gallery Highlights */}
         <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <GalleryHighlights currentLanguage={lang} />
+          <GalleryHighlights />
         </section>
 
         {/* Upcoming Events Grid */}
@@ -111,13 +97,12 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {sampleEvents.map((event) => (
-              <EventCard key={event.id} event={event} currentLanguage={lang} />
+              <EventCard key={event.id} event={event} currentLanguage={currentLanguage} />
             ))}
           </div>
         </section>
       </main>
 
-      {/* Footer */}
       <Footer />
     </div>
   );

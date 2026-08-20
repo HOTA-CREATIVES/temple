@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { LanguageProvider } from "@/providers/LanguageProvider";
+import { LanguageThemeProvider } from "@/providers/LanguageThemeContext";
 
 export const metadata: Metadata = {
   title: "SRI SRIDEVI BHUDEVI SAMETHI SRI VENKATESHWARA SWAMY & SRI ABAYA ANJANEY SWAMY TEMPLE",
@@ -24,9 +24,9 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col font-sans">
-        <LanguageProvider>
+        <LanguageThemeProvider>
           {children}
-        </LanguageProvider>
+        </LanguageThemeProvider>
       </body>
     </html>
   );

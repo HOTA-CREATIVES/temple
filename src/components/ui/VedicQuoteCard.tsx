@@ -1,18 +1,23 @@
+'use client';
+
 import React from 'react';
 import { Card } from '@/components/ui/Card';
+import { useLanguageTheme } from '@/providers/LanguageThemeContext';
 
 interface VedicQuoteCardProps {
   currentLanguage?: 'en' | 'te';
 }
 
-export const VedicQuoteCard: React.FC<VedicQuoteCardProps> = ({ currentLanguage = 'en' }) => {
+export const VedicQuoteCard: React.FC<VedicQuoteCardProps> = ({ currentLanguage: propLang }) => {
+  const context = useLanguageTheme();
+  const currentLanguage = propLang || context.currentLanguage;
   const isTe = currentLanguage === 'te';
 
   return (
-    <Card accentBorder className="bg-gradient-to-br from-[var(--bg-surface)] to-[var(--bg-elevated)] border-amber-400/30">
+    <Card accentBorder className="bg-gradient-to-br from-[var(--bg-surface)] to-[var(--bg-elevated)] border-[var(--border-gold)] shadow-sm">
       <div className="flex flex-col md:flex-row items-center justify-between gap-6 p-2">
         <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-full bg-amber-500/15 flex items-center justify-center text-amber-600 dark:text-amber-400 shrink-0 text-xl border border-amber-400/30">
+          <div className="w-12 h-12 rounded-2xl bg-[var(--color-primary)]/15 flex items-center justify-center text-[var(--color-primary)] shrink-0 text-xl border border-[var(--border-gold)]">
             <i className="fa-solid fa-om"></i>
           </div>
           <div>
@@ -31,8 +36,8 @@ export const VedicQuoteCard: React.FC<VedicQuoteCardProps> = ({ currentLanguage 
         </div>
 
         <div className="shrink-0 text-center md:text-right">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-serif text-[var(--color-secondary)] bg-amber-500/10 border border-[var(--border-gold)]">
-            <i className="fa-solid fa-book-open text-[10px] text-amber-500"></i>
+          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-serif text-[var(--color-secondary)] bg-[var(--color-primary)]/10 border border-[var(--border-gold)]">
+            <i className="fa-solid fa-book-open text-[10px] text-[var(--color-primary)]"></i>
             {isTe ? 'శ్రీమద్భగవద్గీత (2.47)' : 'Bhagavad Gita (2.47)'}
           </span>
         </div>

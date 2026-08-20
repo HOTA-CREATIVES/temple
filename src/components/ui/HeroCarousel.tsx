@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 
+import { useLanguageTheme } from '@/providers/LanguageThemeContext';
+
 interface HeroCarouselProps {
   currentLanguage?: 'en' | 'te';
 }
@@ -50,7 +52,9 @@ const CAROUSEL_SLIDES: SlideItem[] = [
   },
 ];
 
-export const HeroCarousel: React.FC<HeroCarouselProps> = ({ currentLanguage = 'en' }) => {
+export const HeroCarousel: React.FC<HeroCarouselProps> = ({ currentLanguage: propLang }) => {
+  const context = useLanguageTheme();
+  const currentLanguage = propLang || context.currentLanguage;
   const isTe = currentLanguage === 'te';
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
